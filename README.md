@@ -41,3 +41,19 @@ This software will interface with the [Ripple Gateway](https://github.com/ripple
       dogecoin_address: "DGR6H2NGP5ksHM3wHnpcw8maUBLuficpd6"
     }
 
+### Querying the bridge to look up connected addresses
+
+    GET /bridges/dogecoin/:dogecoin_address
+    
+    {
+      dogecoin_address: "DGR6H2NGP5ksHM3wHnpcw8maUBLuficpd6",
+      ripple_address: "rMw9urZURf31w89fg7t5aJBQHqE2oyPg6T"
+    }
+
+    GET /bridges/ripple/:ripple_address
+    
+    {
+      ripple_address: "rMw9urZURf31w89fg7t5aJBQHqE2oyPg6T",
+      dogecoin_address: "DGR6H2NGP5ksHM3wHnpcw8maUBLuficpd6"
+    }
+
