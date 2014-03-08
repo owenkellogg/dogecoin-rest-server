@@ -20,4 +20,4 @@ worldwide crypto Ripple liquidity exchange.
       key: "QQuvhjUGA173oGsg41od6a259R3vQeZ7HerX3FihTeba67eeDUXB"
     }
 
-This software will interface with the (Ripple Gateway)[https://github.com/ripple/ripple-gateway] software.
+This software will interface with the [Ripple Gateway](https://github.com/ripple/ripple-gateway) software.
