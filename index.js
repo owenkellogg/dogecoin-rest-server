@@ -55,12 +55,25 @@ app.post('/bridges', function(req, res){
 });
 
 app.get('/bridges/dogecoin/:dogecoin_address', function(req, res){
-  
-  // look up the connected ripple address given a dogecoin address
 });
 
 app.get('/bridges/ripple/:ripple_address', function(req, res){
-  // look up the connected dogecoin address given a ripple address
+  gateway.getRippleAddress({ ripple_address, req.param.ripple_address }, function(err, address){
+    if (err) {
+      res.send(500, { error: err });
+    } else {
+      gateway.getExternalAccount({ user_id: address.user_id }, function(err, account){
+        if (err) {
+          res.send(500, { error: err });
+        } else {
+          res.send({ 
+            dogecoin_address: account.name,
+            ripple_address: req.param.ripple_address 
+          });
+        }
+      });
+    }
+  });
 });
 
 app.listen(5000);
