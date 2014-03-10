@@ -19,7 +19,6 @@ app.get('/wallet/new', function(req, res){
 });
 
 app.post('/bridges', function(req, res){
-
   gateway.createUser({ name: req.body.user, password: req.body.password }, function(err, user){
     if (err) {
       res.send(500, { error: err });  
@@ -55,6 +54,22 @@ app.post('/bridges', function(req, res){
 });
 
 app.get('/bridges/dogecoin/:dogecoin_address', function(req, res){
+  gateway.getExternalAccount({ name: req.param.dogecoin_address }, function(err, account){
+    if (err) {
+      res.send(500, { error: err }); 
+    } else {
+      gateway.getRippleAddress({ user_id: account.user_id }, function(err, ripple_address){
+        if (err) {
+          res.send(500, { error: err }); 
+        } else {
+          res.send({ 
+            ripple_address: ripple_address.address,
+            dogecoin_address: req.param.dogecoin_address 
+          });
+        }
+      });
+    }
+  });
 });
 
 app.get('/bridges/ripple/:ripple_address', function(req, res){
